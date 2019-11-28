@@ -3,6 +3,7 @@
 Follow the below steps on the AWS console to run the demo project.
 
 A. Create an IAM Policy
+
 		1. In the AWS Management Console, click Services, and then click IAM to open the IAM dashboard.
 		2. In the left navigation menu, click Policies.
 		3. Click Create policy.

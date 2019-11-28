@@ -74,6 +74,7 @@ C. Create an AWS Cloud9 environment
 		7. Review the details, and click Create environment. This should launch your AWS Cloud9 environment within a few minutes.
 		
 D. Setup your Cloud9 Environment, download the code from github repository and the AWS IoT CA Public Certificate:
+
 		1. Install the AWS IoT Device SDK Node package by running the following command in your AWS Cloud9 terminal.
 			npm install aws-iot-device-sdk
 		2. Use below command to create 10 folders for each car. 
@@ -87,7 +88,8 @@ D. Setup your Cloud9 Environment, download the code from github repository and t
 		4. Download the AWS IoT Certificate Authority Public Certificate
 			cd ~/environment
 			wget -O root-CA.crt https://www.amazontrust.com/repository/AmazonRootCA1.pem
-E. Create Car IoT Thing, Certificate and Policy
+E. Create Car IoT Thing, Certificate and Policy:
+
 		1. In your Cloud9 terminal, enter the following commands to create the car for all 10 cars.
 			cd ~/environment/car<number>
 			aws iot create-thing --thing-name car<number>
@@ -98,7 +100,8 @@ E. Create Car IoT Thing, Certificate and Policy
 		4. To attach the car2 Thing to the Certificate, enter the following command. Replace <certificateArn_changeme> with the value of the attribute certificateArn
 		aws iot attach-thing-principal --thing-name car2 --principal <certificateArn_changeme>
 		
-F. Execute the code
+F. Execute the code:
+
 		1. In the Cloud9 terminal, enter the following command to get your specific AWS IoT Endpoint.
 			aws iot describe-endpoint --endpoint-type iot:Data-ATS > ~/environment/endpoint.json
 		2. Execute the following commands to start the code for car1
@@ -107,10 +110,12 @@ F. Execute the code
 		3. To listen to data in topic. In the AWS Management Console, click Services, and then click IoT Core to open the IoT Core console. Click Test in the left menu.
 		4. In the Subscription topic, enter scalable/telemetry and click Subscribe to topic.
 		
-G. Create a Simple Notification Service Topic
+G. Create a Simple Notification Service Topic:
+
 		1. For the Topic name enter scalableSNSFuelTopic.
 		2. Create subscription to start the process of subscribing your email address to the new SNS Topic you created.
-H. Create an IAM Role
+H. Create an IAM Role:
+
 		1. In the AWS Management Console, click Services, and then click IAM to go to the IAM dashboard.
 		2. In the left navigation menu, click Roles.
 		3. Click Create role.
@@ -125,6 +130,7 @@ H. Create an IAM Role
 		12. Click Create role.
 		
 I. Create an IoT Rule
+
 		1. In the AWS Management Console, click Services, and then click IoT Core to go to the IoT console.
 		2. In the left navigation menu, click Act. This is where you configure rules in IoT Core.
 		3. Click Create a rule.
@@ -146,11 +152,13 @@ I. Create an IoT Rule
 		  fuel_level < 25
 		13. Click Create rule.
 J. Run the code
+
 		1. In the Cloud9 terminal, start car1 by executing the following commands.
 			cd ~/environment/car1
 			node exercise-1.1.js
 			
 K. Communicate between two cars:
+
 		1. Install the AWS IoT Device SDK for Python
 			sudo pip install AWSIoTPythonSDK
 		2. Download the application code in project folder by running the following commands in your AWS Cloud9 terminal for all cars
@@ -164,6 +172,7 @@ K. Communicate between two cars:
 		5. Use command in command.txt file to test communication.
 		Remember: '|'  seperates the message and the last part is the sender where you have to run command whereas the middle part is the car that receives the message.
 L.	Using SQS for communication between multiple instances	
+
 		1.	In AWS Management console, click IAM. In IAM, click on users.
 		2.	Select your username and click on Add Permissions in the permissions tab. Click on ‘Attach existing policies directly’. Search for SQS and select ‘AmazonSQSFullAccess’. 
 		3.	Go to your Cloud 9 IDE and add create_queue.py, send_message_queue.py and receive.py files to each car folder. GO to car car1 folder with the following command – cd ~/environment/car1
